@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🔍 Barcode Scanner</h1>
+            <p class="subtitle">Point your camera at a barcode to scan</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Scanner Section -->
+            <section class="scanner-section">
+                <div class="scanner-container">
+                    <div id="reader"></div>
+                    <div class="scanner-overlay">
+                        <div class="scan-line"></div>
+                    </div>
+                </div>
+                <div class="scanner-controls">
+                    <button id="startBtn" class="btn btn-primary">
+                        <span class="btn-icon">▶</span> Start Scanner
+                    </button>
+                    <button id="stopBtn" class="btn btn-secondary" disabled>
+                        <span class="btn-icon">⏹</span> Stop Scanner
+                    </button>
+                </div>
+                <div id="lastScan" class="last-scan hidden">
+                    <span class="scan-label">Last Scanned:</span>
+                    <span class="scan-value"></span>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <div class="results-header">
+                    <h2>📋 Scanned Items</h2>
+                    <span id="itemCount" class="item-count">0 items</span>
+                </div>
+                
+                <div id="scanList" class="scan-list">
+                    <div class="empty-state">
+                        <span class="empty-icon">📦</span>
+                        <p>No items scanned yet</p>
+                        <p class="empty-hint">Start the scanner and point at a barcode</p>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button id="exportBtn" class="btn btn-success" disabled>
+                        <span class="btn-icon">📥</span> Export CSV
+                    </button>
+                    <button id="clearBtn" class="btn btn-danger" disabled>
+                        <span class="btn-icon">🗑️</span> Clear All
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Supports EAN-13, UPC-A, Code-128 barcodes</p>
+        </footer>
+    </div>
+
+    <!-- Audio for beep -->
+    <audio id="beepSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdH2LkZeXkYuBd21fVU5OVV1nc4GNmKGkpJ6WjYJ2a19TTURAPkBET1tpdYOQnKaqqqSajH5xY1RGOjIuLjI6RVJibHqIla2ys7KqnpF9bF1OQTQsJycoLTdCUGFwe42grLO0sKidj31qWUo8MCgiISImLjlHV2p7jZ+rs7OuoZODbVxMPjErJiMjJy43RVVmeIuerLKwq5+PgW5eTz8xKSQhISUnLjdFVGZ3ip2prq2onpB/bFxNPzEpJCEhJCctNkRTZXeJnKiqqqWajn5sXE49MCkkISEmKS43RVVmdomcqKqqpZqOgGxcTj4xKiUiIiUnLjdEVGZ3ipyoqqqmmY9/bV1OPjIrJiMjJikuN0VVZniJnaeqqqaaj4BsXU4+Mikk" type="audio/wav">
+    </audio>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="js/scanner.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
